@@ -1,29 +1,36 @@
 body {
-    font-family: sans-serif;
-    margin:0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
     padding: 0;
-    background-color: #bdeff3;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    min-height: 100vh;
   }
   
   .container {
     margin: auto;
-    padding: 30px;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
+    max-width: 1200px;
   }
   
   h1 {
     text-align: center;
-    color: #32CBFF;
-    margin-bottom: 10px;
+    color: #1976d2;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
   
   h2 {
-    color: #444;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #d62626;
-    padding-bottom: 5px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ff5722;
+    padding-bottom: 8px;
+    font-size: 1.4rem;
+    font-weight: 500;
   }
   
   h3 {
@@ -33,24 +40,29 @@ body {
   
   .map-box {
     background-color: white;
-    padding: 20px;
-    border-radius: 16px;
+    padding: 25px;
+    border-radius: 20px;
     margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
   }
   
   .user-report {
     background-color: white;
-    padding: 20px;
-    border-radius: 16px;
+    padding: 25px;
+    border-radius: 20px;
     margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
   }
   
   #map {
     height: 500px;       
     width: 100%;          
     margin-top: 20px;
-    border-radius: 12px;
+    border-radius: 16px;
     margin-bottom: 30px;
-    
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
   }
   

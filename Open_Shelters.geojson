@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": 1727158,
+      "id": 1727165,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -12,7 +12,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727158,
+        "objectid": 1727165,
         "shelter_id": 358729,
         "shelter_name": "Joe W. Brown Recreation Center",
         "address": "5601 Read Blvd",
@@ -38,7 +38,7 @@
     },
     {
       "type": "Feature",
-      "id": 1727159,
+      "id": 1727166,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -47,7 +47,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727159,
+        "objectid": 1727166,
         "shelter_id": 367096,
         "shelter_name": "American Legion",
         "address": "1057 US 395",
@@ -73,7 +73,7 @@
     },
     {
       "type": "Feature",
-      "id": 1727160,
+      "id": 1727167,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -82,7 +82,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727160,
+        "objectid": 1727167,
         "shelter_id": 367098,
         "shelter_name": "Crook County Fairgrounds - Carey Foster",
         "address": "590 SE Lynn Blvd",
@@ -108,7 +108,7 @@
     },
     {
       "type": "Feature",
-      "id": 1727161,
+      "id": 1727168,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -117,7 +117,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727161,
+        "objectid": 1727168,
         "shelter_id": 367099,
         "shelter_name": "Sonora Senior Center",
         "address": "540 Greenley Rd",
@@ -143,7 +143,7 @@
     },
     {
       "type": "Feature",
-      "id": 1727162,
+      "id": 1727169,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -152,7 +152,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727162,
+        "objectid": 1727169,
         "shelter_id": 171713,
         "shelter_name": "Jurupa Valley High School",
         "address": "10551 Bellegrave Ave",
@@ -178,7 +178,7 @@
     },
     {
       "type": "Feature",
-      "id": 1727163,
+      "id": 1727170,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -187,7 +187,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727163,
+        "objectid": 1727170,
         "shelter_id": 367101,
         "shelter_name": "Entiat Warehouse Community Church",
         "address": "14916 Hwy 97A",
@@ -213,7 +213,7 @@
     },
     {
       "type": "Feature",
-      "id": 1727164,
+      "id": 1727171,
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -222,7 +222,7 @@
         ]
       },
       "properties": {
-        "objectid": 1727164,
+        "objectid": 1727171,
         "shelter_id": 367093,
         "shelter_name": "Milwaukee Environmental Sciences School",
         "address": "6600 W Melvina St",
