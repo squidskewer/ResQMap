@@ -1,0 +1,250 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1727158,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.96640299999996,
+          30.03024800000003
+        ]
+      },
+      "properties": {
+        "objectid": 1727158,
+        "shelter_id": 358729,
+        "shelter_name": "Joe W. Brown Recreation Center",
+        "address": "5601 Read Blvd",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": "70127",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": 729,
+        "post_impact_capacity": 364,
+        "total_population": 10,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": null,
+        "org_id": null,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": 30.030248,
+        "longitude": -89.966403
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727159,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.09186919999996,
+          48.61054840000003
+        ]
+      },
+      "properties": {
+        "objectid": 1727159,
+        "shelter_id": 367096,
+        "shelter_name": "American Legion",
+        "address": "1057 US 395",
+        "city": "N Kettle Falls",
+        "state": "WA",
+        "zip": "99141",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 17,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "ARC Partner",
+        "org_id": 126165,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727160,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.84012999999999,
+          44.29385600000006
+        ]
+      },
+      "properties": {
+        "objectid": 1727160,
+        "shelter_id": 367098,
+        "shelter_name": "Crook County Fairgrounds - Carey Foster",
+        "address": "590 SE Lynn Blvd",
+        "city": "Prineville",
+        "state": "OR",
+        "zip": "97754",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 0,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "ARC Partner",
+        "org_id": 126165,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727161,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.36917499999998,
+          37.98170300000004
+        ]
+      },
+      "properties": {
+        "objectid": 1727161,
+        "shelter_id": 367099,
+        "shelter_name": "Sonora Senior Center",
+        "address": "540 Greenley Rd",
+        "city": "Sonora",
+        "state": "CA",
+        "zip": "95370",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 7,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "Independent",
+        "org_id": 126166,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727162,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.51345375599999,
+          34.00272994000005
+        ]
+      },
+      "properties": {
+        "objectid": 1727162,
+        "shelter_id": 171713,
+        "shelter_name": "Jurupa Valley High School",
+        "address": "10551 Bellegrave Ave",
+        "city": "Jurupa Valley",
+        "state": "CA",
+        "zip": "91752",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": 536,
+        "post_impact_capacity": 268,
+        "total_population": 0,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "RIVERSIDE COUNTY CHAPTER",
+        "org_id": 121757,
+        "match_type": "A",
+        "subfacility_code": "EMEREVAC",
+        "ada_compliant": " ",
+        "pet_accommodations_code": " ",
+        "wheelchair_accessible": " ",
+        "latitude": 34.002729939999995,
+        "longitude": -117.51345376
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727163,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.20784469999995,
+          47.69094690000003
+        ]
+      },
+      "properties": {
+        "objectid": 1727163,
+        "shelter_id": 367101,
+        "shelter_name": "Entiat Warehouse Community Church",
+        "address": "14916 Hwy 97A",
+        "city": "Entiat",
+        "state": "WA",
+        "zip": "98822",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 3,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "ARC Partner",
+        "org_id": 126165,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727164,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.99487799999997,
+          43.08832300000006
+        ]
+      },
+      "properties": {
+        "objectid": 1727164,
+        "shelter_id": 367093,
+        "shelter_name": "Milwaukee Environmental Sciences School",
+        "address": "6600 W Melvina St",
+        "city": "Milwaukee",
+        "state": "WI",
+        "zip": "53216",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 43,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "ARC Partner",
+        "org_id": 126165,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    }
+  ]
+}

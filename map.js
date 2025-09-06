@@ -6,8 +6,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// FEMA Open Shelters GeoJSON endpoint (all fields)
-const DATA_URL = "https://gis.fema.gov/arcgis/rest/services/NSS/OpenShelters/MapServer/0/query?where=1=1&outFields=*&f=geojson";
+// Use Python backend to bypass CORS and enable offline functionality
+const DATA_URL = "http://localhost:5000/data";
 
 // Fetch and plot shelters
 fetch(DATA_URL)
