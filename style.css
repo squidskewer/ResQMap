@@ -1,0 +1,56 @@
+body {
+    font-family: sans-serif;
+    margin:0;
+    padding: 0;
+    background-color: #bdeff3;
+  }
+  
+  .container {
+    margin: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #32CBFF;
+    margin-bottom: 10px;
+  }
+  
+  
+  h2 {
+    color: #444;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #d62626;
+    padding-bottom: 5px;
+  }
+  
+  h3 {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .map-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .user-report {
+    background-color: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+  }
+  
+  #map {
+    height: 500px;       
+    width: 100%;          
+    margin-top: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    
+  }
+  
