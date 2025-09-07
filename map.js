@@ -1,6 +1,16 @@
-// ====== MAP SCRIPT (your existing code) ======
 // Setup the map
-const map = L.map('map').setView([37, -100], 4);
+// Set maximum bounds (FEMA only covers the US)
+const map = L.map('map', {
+  minZoom: 3,
+  maxZoom: 18,
+  zoomControl: true
+}).setView([37, -100], 4);
+
+map.setMaxBounds([
+  [15, -180],
+  [70, -50]
+]);
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
