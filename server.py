@@ -1,10 +1,10 @@
-from flask import Flask, jsonify, send_file, render_template_string
+from flask import Flask, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 import requests
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.')
 CORS(app)  # Enable CORS for all routes
 LOCAL_FILE = "Open_Shelters.geojson"
 FEMA_URL = "https://gis.fema.gov/arcgis/rest/services/NSS/OpenShelters/MapServer/0/query?where=1=1&outFields=*&f=geojson"
@@ -14,17 +14,12 @@ FEMA_URL = "https://gis.fema.gov/arcgis/rest/services/NSS/OpenShelters/MapServer
 def index():
     return send_file("index.html")
 
-# Route to serve CSS file
-@app.route("/style.css")
-def serve_css():
-    return send_file("style.css", mimetype="text/css")
+# Route to serve static files (CSS, JS, etc.)
+@app.route("/<path:filename>")
+def serve_static(filename):
+    return send_from_directory('.', filename)
 
-# Route to serve JavaScript file
-@app.route("/map.js")
-def serve_js():
-    return send_file("map.js", mimetype="application/javascript")
-
-# Route to fetch data (updates local backup)
+# Route to fetch data
 @app.route("/data")
 def get_data():
     try:
