@@ -1,124 +1,173 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ResQMap</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Link to Leaflet CSS -->
-    <link rel="stylesheet" href="leaflet.css" />
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMP Project 2025 - ResQMap</title>
 
+  <!-- Local styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Local Leaflet for map -->
+  <link rel="stylesheet" href="leaflet.css" />
+</head>
+<body>
     <div class="title-container">
       <h1>ResQMap</h1>
     </div>
     
     <div class="container">
-      
-      <!-- Box for the map -->
-      <div class="map-box">
-        <h2>Locate Nearest Shelter</h2>
-        <div id="map"></div>
 
-        <button id="findBtn">Find Nearest Shelter</button>
+    <!-- Map box -->
+    <div class="map-box">
+      <h2>Locate Nearest Shelter</h2>
+      <div id="map"></div>
+      <button id="findBtn">Find Nearest Shelter</button> <!-- Button to find nearest location -->
+    </div>
+
+    <!-- Status report section -->
+    <div class="status-report">
+      <h2>User Status Report</h2>
+
+      <!-- Controls for selecting shelter and status -->
+      <div class="status-controls">
+        <!-- Shelter selection dropdown -->
+        <div class="form-group">
+          <label for="shelterSelect">Select Shelter:</label>
+          <select id="shelterSelect">
+            <!-- Options populated from JS -->
+          </select>
+        </div>
+
+        <!-- Status selection dropdown -->
+        <div class="form-group">
+          <label for="statusSelect">Select Status:</label>
+          <select id="statusSelect">
+            <option value="Open">Open</option>
+            <option value="Full">Full</option>
+            <option value="Closed">Closed</option>
+            <option value="Flooded">Flooded</option>
+            <option value="Destroyed">Destroyed</option>
+            <option value="Damaged">Damaged</option>
+            <option value="Under Maintenance">Under Maintenance</option>
+            <option value="Evacuation in Progress">Evacuation in Progress</option>
+            <option value="Power Outage">Power Outage</option>
+            <option value="Medical Emergency">Medical Emergency</option>
+          </select>
+        </div>
+
+        <!-- Button to update the status table -->
+        <button id="updateStatusBtn" class="primary-btn">Update Status</button>
       </div>
 
-      <!-- Link to Leaflet JS -->
-      <script src="leaflet.js"></script>
-
-      <script src="map.js"></script>
-      
-    <div class="user-report">
-      <h2>User Status Report</h2>
+      <!-- Table showing all shelters and their current status -->
+      <table id="statusTable">
+        <thead>
+          <tr>
+            <th>Shelter Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows populated from JS -->
+        </tbody>
+      </table>
     </div>
-      
+
+    <!-- More info dropdowns -->
     <div class="dropdown-group">
       <h2>More Info</h2>
-    <div class="dropdown">
-      <button class="dropdown-btn">Map Usage</button>
-      <div class="dropdown-content">
-            <p><span class="highlight">Open the Map -</span> It starts centered on San Francisco (or your chosen area).</p>
-        <p><span class="highlight">Zoom In/Out -</span> Use the + and - buttons or scroll the mouse wheel.</p>
-        <p><span class="highlight">Pan Around -</span> Click and drag to move the map.</p>
-        <p><span class="highlight">Shelter Markers -</span> Small pins on the map show shelters.</p>
-        <p><span class="highlight">See Details -</span> Click a marker to open a popup with the shelter’s name and type.</p>
-        <p><span class="highlight">Close Popup -</span> Click the × or anywhere else on the map.</p>
 
+      <div class="dropdown">
+        <button class="dropdown-btn">Map Usage</button>
+        <div class="dropdown-content">
+          <p><span class="highlight">Open the Map -</span> It starts centered on San Francisco (or your chosen area).</p>
+          <p><span class="highlight">Zoom In/Out -</span> Use the + and - buttons or scroll the mouse wheel.</p>
+          <p><span class="highlight">Pan Around -</span> Click and drag to move the map.</p>
+          <p><span class="highlight">Shelter Markers -</span> Small pins on the map show shelters.</p>
+          <p><span class="highlight">See Details -</span> Click a marker to open a popup with the shelter's name and type.</p>
+          <p><span class="highlight">Close Popup -</span> Click the × or anywhere else on the map.</p>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-btn">Natural Disasters</button>
+        <div class="dropdown-content">
+          <p>🌋 <b>Earthquake</b></p>
+          <ul>
+            <li>Drop, Cover, Hold On: Get under sturdy furniture, cover head/neck, and hold until shaking stops.</li>
+            <li>Stay away from windows, shelves, and tall furniture.</li>
+            <li>After shaking: evacuate carefully, watch for falling debris.</li>
+          </ul>
+
+          <p>🌊 <b>Tsunami</b></p>
+          <ul>
+            <li>If you are near the coast and you feel a strong quake → move to higher ground immediately.</li>
+            <li>Stay inland until authorities say it's safe.</li>
+            <li>Don't go back for belongings.</li>
+          </ul>
+
+          <p>🌪 <b>Tornado</b></p>
+          <ul>
+            <li>Go to a basement or small interior room (bathroom, closet) without windows.</li>
+            <li>Cover yourself with a mattress or blankets.</li>
+            <li>If outside: lie flat in a low ditch, not under bridges.</li>
+          </ul>
+
+          <p>🌀 <b>Hurricane / Typhoon</b></p>
+          <ul>
+            <li>Evacuate if ordered.</li>
+            <li>Stay indoors, away from windows.</li>
+            <li>Have food, water, and batteries for several days.</li>
+            <li>Avoid floodwaters afterward (they may be contaminated or hide hazards).</li>
+          </ul>
+
+          <p>🔥 <b>Wildfire</b></p>
+          <ul>
+            <li>Leave early - don't wait until it's close.</li>
+            <li>Wear cotton clothes (not synthetic).</li>
+            <li>Cover nose/mouth with cloth to reduce smoke inhalation.</li>
+            <li>Drive away with headlights on, not through heavy smoke.</li>
+          </ul>
+
+          <p>🌊 <b>Flood</b></p>
+          <ul>
+            <li>Move to higher ground immediately.</li>
+            <li>Never walk or drive through floodwaters ("Turn Around, Don't Drown").</li>
+            <li>Stay away from downed power lines.</li>
+          </ul>
+
+          <p>❄️ <b>Blizzard / Extreme Cold</b></p>
+          <ul>
+            <li>Stay indoors if possible.</li>
+            <li>Layer clothing, cover head/hands.</li>
+            <li>Keep emergency heat sources.</li>
+            <li>If in a car, stay inside, run engine occasionally for heat, keep exhaust clear.</li>
+          </ul>
+
+          <p>🔥 <b>House Fire</b></p>
+          <ul>
+            <li>Crawl low under smoke.</li>
+            <li>Feel doors with back of hand before opening.</li>
+            <li>Get out quickly and don't go back inside.</li>
+            <li>Call emergency services once outside.</li>
+          </ul>
+
+          <p>☢️ <b>Chemical Spill / Gas Leak</b></p>
+          <ul>
+            <li>If indoors: seal windows/doors, turn off ventilation.</li>
+            <li>If outdoors: move uphill and upwind.</li>
+            <li>Avoid touching liquids/powders.</li>
+            <li>Follow official evacuation orders.</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="dropdown">
-      <button class="dropdown-btn">Natural Disasters</button>
-      <div class="dropdown-content">
-        <p>🌋 <b>Earthquake</b>
-        <ul>
-          <li>Drop, Cover, Hold On: Get under sturdy furniture, cover head/neck, and hold until shaking stops.</li>
-          <li>Stay away from windows, shelves, and tall furniture.</li>
-          <li>After shaking: evacuate carefully, watch for falling debris.</li>
-        </ul>
-
-        <p>🌊 <b>Tsunami</b></p>
-        <ul>
-          <li>If you are near the coast and you feel a strong quake → move to higher ground immediately.</li>
-          <li>Stay inland until authorities say it’s safe.</li>
-          <li>Don’t go back for belongings.</li>
-        </ul>
-
-        <p>🌪 <b>Tornado</b></p>
-        <ul>
-          <li>Go to a basement or small interior room (bathroom, closet) without windows.</li>
-          <li>Cover yourself with a mattress or blankets.</li>
-          <li>If outside: lie flat in a low ditch, not under bridges.</li>
-        </ul>
-
-        <p>🌀 <b>Hurricane / Typhoon</b></p>
-        <ul>
-          <li>Evacuate if ordered.</li>
-          <li>Stay indoors, away from windows.</li>
-          <li>Have food, water, and batteries for several days.</li>
-          <li>Avoid floodwaters afterward (they may be contaminated or hide hazards).</li>
-        </ul>
-
-        <p>🔥 <b>Wildfire</b></p>
-        <ul>
-          <li>Leave early - don’t wait until it’s close.</li>
-          <li>Wear cotton clothes (not synthetic).</li>
-          <li>Cover nose/mouth with cloth to reduce smoke inhalation.</li>
-          <li>Drive away with headlights on, not through heavy smoke.</li>
-        </ul>
-
-        <p>🌊 <b>Flood</b></p>
-        <ul>
-          <li>Move to higher ground immediately.</li>
-          <li>Never walk or drive through floodwaters (“Turn Around, Don’t Drown”).</li>
-          <li>Stay away from downed power lines.</li>
-        </ul>
-
-        <p>❄️ <b>Blizzard / Extreme Cold</b></p>
-        <ul>
-          <li>Stay indoors if possible.</li>
-          <li>Layer clothing, cover head/hands.</li>
-          <li>Keep emergency heat sources.</li>
-          <li>If in a car, stay inside, run engine occasionally for heat, keep exhaust clear.</li>
-        </ul>
-
-        <p>🔥 <b>House Fire</b></p>
-        <ul>
-          <li>Crawl low under smoke.</li>
-          <li>Feel doors with back of hand before opening.</li>
-          <li>Get out quickly and don’t go back inside.</li>
-          <li>Call emergency services once outside.</li>
-        </ul>
-
-        <p>☢️ <b>Chemical Spill / Gas Leak</b></p>
-        <ul>
-          <li>If indoors: seal windows/doors, turn off ventilation.</li>
-          <li>If outdoors: move uphill and upwind.</li>
-          <li>Avoid touching liquids/powders.</li>
-          <li>Follow official evacuation orders.</li>
-        </ul>
-       </p>
-      </div>
-    </div>
-    </div>
-  </body>
+  <!-- Leaflet JS library (local for offline support) -->
+  <script src="leaflet.js"></script>
+  <!-- Application JS -->
+  <script src="map.js"></script>
+</body>
 </html>

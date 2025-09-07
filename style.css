@@ -1,3 +1,4 @@
+/* Background and basic settings */
 body {
   font-family: sans-serif;
   margin: 0;
@@ -5,12 +6,24 @@ body {
   background-color: #bdeff3;
 }
 
+/* Centers the main content horizontally */
 .container {
   margin: auto;
   padding: 30px;
   display: flex;
   flex-direction: column;
   max-width: 1000px;
+}
+
+/* Main title */
+h1 {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+  border-bottom: 2px solid #d62626;
+  padding-bottom: 20px;
 }
 
 .title-container {
@@ -24,16 +37,7 @@ body {
   text-align: center;
 }
 
-h1 {
-  text-align: center;
-  color: #000000;
-  margin-bottom: 0;
-  font-size: 2.5em;
-  font-weight: bold;
-  border-bottom: 2px solid #d62626;
-  padding-bottom: 20px;
-}
-
+/* Sub title */
 h2 {
   color: #444;
   margin-bottom: 10px;
@@ -41,34 +45,48 @@ h2 {
   padding-bottom: 5px;
 }
 
+/* Detailed information */
 h3 {
   margin-top: 20px;
   color: #333;
 }
 
+/* The white box for the map */
 .map-box {
   background-color: white;
   padding: 20px;
   border-radius: 16px;
   margin-bottom: 30px;
+  max-width: 980px;
 }
 
-.user-report {
+/* The white box for the user report */
+.status-report {
   background-color: white;
   padding: 20px;
   border-radius: 16px;
   margin-bottom: 30px;
-  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+.status-report h2 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #b71c1c;
+  padding-bottom: 5px;
+  color: #b71c1c;
+}
+
+/* The map design */
 #map {
   height: 500px;
   width: 100%;
   margin-top: 20px;
   border-radius: 12px;
   margin-bottom: 10px;
+  border: 1px solid #ddd;
 }
 
+/* The Find nearest shelter button design */
 button {
   background: #d32f2f;
   color: white;
@@ -82,10 +100,12 @@ button {
   max-width: 300px;
 }
 
+/* The hover motion for the button */
 button:hover {
   background: #b71c1c;
 }
 
+/* Dropdown button design */
 .dropdown-btn {
   background: #45b2de;
   padding: 12px;
@@ -96,20 +116,24 @@ button:hover {
   cursor: pointer;
 }
 
+/* Dropdown button hover motion */
 .dropdown-btn:hover {
   background: #2b8db5;
 }
 
+/* The arrow indicator when dropdown is active */
 .dropdown-btn.active::after {
   content: "▲";
   float: right;
 }
 
+/* The arrow indicator when dropdown is inactive */
 .dropdown-btn::after {
   content: "▼";
   float: right;
 }
 
+/* The design for the content inside the dropdown */
 .dropdown-content {
   display: none;
   padding: 12px 15px;
@@ -120,6 +144,7 @@ button:hover {
   font-size: 15px;
 }
 
+/* The design for the white box for the dropdowns */
 .dropdown-group {
   background-color: white;
   padding: 20px;
@@ -127,10 +152,62 @@ button:hover {
   margin-bottom: 30px;
 }
 
+/* It shows the content inside */
 .dropdown.active .dropdown-content {
   display: block;
 }
 
+/* User Status Report Styles */
+.status-report {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.status-report h2 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #b71c1c;
+  padding-bottom: 5px;
+  color: #b71c1c;
+}
+
+/* Layout for the controls row */
+.status-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-report select,
+.status-report button {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Table styling */
+#statusTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#statusTable th, #statusTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+#statusTable th {
+  background-color: #f5f5f5;
+}
+
+/* Special styling for find button */
 #findBtn {
   background: #d9534f;
   color: #fff;
@@ -141,6 +218,13 @@ button:hover {
   cursor: pointer;
   margin-top: 10px;
 }
-#findBtn:focus { outline: 3px solid rgba(217,83,79,0.2); }
-.map-box { max-width: 980px; margin-bottom: 12px; }
-#map { height: 420px; border: 1px solid #ddd; border-radius: 6px; }
+
+#findBtn:focus { 
+  outline: 3px solid rgba(217,83,79,0.2); 
+}
+
+/* Highlight text styling */
+.highlight {
+  font-weight: bold;
+  color: #d32f2f;
+}

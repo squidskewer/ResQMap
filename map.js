@@ -1,37 +1,22 @@
-// Setup the map
-// Set maximum bounds (FEMA only covers the US)
-const map = L.map('map', {
-  minZoom: 3,
-  maxZoom: 18,
-  zoomControl: true
-}).setView([37, -100], 4);
-
-map.setMaxBounds([
-  [15, -180],
-  [70, -50]
-]);
-
-// Add tile layer with fallback
+// Default map setup
+const map = L.map('map').setView([37, -100], 4);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors',
-  errorTileUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjVmNWY1Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk1hcCBUaWxlPC90ZXh0Pjwvc3ZnPg=='
+  attribution: '© OpenStreetMap contributors'
 }).addTo(map);
-
-let shelters = [];
 
 // Custom marker icons (using local files for offline support)
 const blueIcon = new L.Icon({ iconUrl: 'icons/blue-dot.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
 const redIcon = new L.Icon({ iconUrl: 'icons/red-dot.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
 const yellowIcon = new L.Icon({ iconUrl: 'icons/yellow-dot.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
 
-// Simple euclidean distance (can switch to haversine for more accuracy)
+// Simple distance function
 function findDistance(lat1, lon1, lat2, lon2) {
   const dx = lat2 - lat1;
   const dy = lon2 - lon1;
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-// Load shelter data - same experience online/offline, just updates data first when online
+// Fetch all FEMA shelters
 async function fetchFEMAAll() {
   // Update GeoJSON if online
   if (navigator.onLine) {
@@ -64,11 +49,12 @@ async function fetchFEMAAll() {
         city: p.city || "",
         state: p.state || "",
         zip: p.zip || "",
-        status: p.shelter_status || "Unknown",
+        status: p.shelter_status || "Unknown", // FEMA status
         capacity: p.evacuation_capacity || "N/A",
         organization: p.org_name || "N/A",
-        lat: coords[1],
-        lng: coords[0]
+        lat: coords ? coords[1] : null,
+        lng: coords ? coords[0] : null,
+        userStatus: "N/A" // default user status
       };
     });
   } catch (error) {
@@ -77,80 +63,155 @@ async function fetchFEMAAll() {
   }
 }
 
-// Button click
-document.getElementById("findBtn").addEventListener("click", async () => {
-  if (!navigator.geolocation) {
-    alert("GPS not supported");
-    return;
+let allShelters = [];
+let shelterMarkers = [];
+
+// Load shelters on page load
+(async function loadAllShelters() {
+  try {
+    allShelters = await fetchFEMAAll();
+
+    // Plot shelters on map
+    allShelters.forEach(s => {
+      if (Number.isFinite(s.lat) && Number.isFinite(s.lng)) {
+        const marker = L.marker([s.lat, s.lng], { icon: blueIcon })
+          .addTo(map)
+          .bindPopup(`
+            <b>${s.name}</b><br>
+            ${s.address}, ${s.city}, ${s.state} ${s.zip}<br>
+            FEMA Status: ${s.status}<br>
+            User Status: ${s.userStatus}<br>
+            Capacity: ${s.capacity}<br>
+            Organization: ${s.organization}
+          `);
+        shelterMarkers.push({ marker, data: s });
+      }
+    });
+
+    // Populate dropdown and table
+    populateShelterDropdown();
+
+  } catch (err) {
+    console.error("Error loading shelters:", err);
   }
+})();
 
-  navigator.geolocation.getCurrentPosition(async pos => {
-    const { latitude, longitude } = pos.coords;
+// Populate shelter dropdown and table
+function populateShelterDropdown() {
+  const shelterSelect = document.getElementById("shelterSelect");
+  const statusTableBody = document.querySelector("#statusTable tbody");
 
-    // Load shelters
-    shelters = await fetchFEMAAll();
-    console.log(`Found ${shelters.length} shelters`);
+  shelterSelect.innerHTML = "";
+  statusTableBody.innerHTML = "";
 
-    // Filter valid coordinates
-    shelters = shelters.filter(s => Number.isFinite(s.lat) && Number.isFinite(s.lng));
-    console.log(`After filtering: ${shelters.length} shelters`);
+  allShelters.forEach(shelter => {
+    // Dropdown option
+    const opt = document.createElement("option");
+    opt.value = shelter.name;
+    opt.textContent = shelter.name;
+    shelterSelect.appendChild(opt);
 
-    if (shelters.length === 0) {
-      alert("No shelters found.");
-      return;
+    // Table row
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${shelter.name}</td>
+      <td class="status-cell">${shelter.userStatus}</td>
+    `;
+    statusTableBody.appendChild(row);
+  });
+}
+
+// Update status table on button click
+document.getElementById("updateStatusBtn").addEventListener("click", () => {
+  const selectedShelter = document.getElementById("shelterSelect").value;
+  const selectedStatus = document.getElementById("statusSelect").value;
+
+  // Update table
+  const rows = document.querySelectorAll("#statusTable tbody tr");
+  rows.forEach(row => {
+    if (row.cells[0].textContent === selectedShelter) {
+      row.cells[1].textContent = selectedStatus;
     }
+  });
 
-    // Sort by distance
-    shelters.sort((a, b) =>
-      findDistance(latitude, longitude, a.lat, a.lng) -
-      findDistance(latitude, longitude, b.lat, b.lng)
-    );
-
-    // Clear previous markers
-    map.eachLayer(layer => {
-      if (layer instanceof L.Marker) map.removeLayer(layer);
-    });
-
-    // Add user marker
-    L.marker([latitude, longitude], { icon: yellowIcon })
-      .addTo(map)
-      .bindPopup("You are here")
-      .openPopup();
-
-    // Add shelter markers
-    const nearest = shelters[0];
-    shelters.forEach(s => {
-      const dist = findDistance(latitude, longitude, s.lat, s.lng);
-      const icon = (s === nearest) ? redIcon : blueIcon;
-      L.marker([s.lat, s.lng], { icon })
-        .addTo(map)
-        .bindPopup(`
-          <b>${s.name}</b><br>
-          ${s.address}, ${s.city}, ${s.state} ${s.zip}<br>
-          Status: ${s.status}<br>
-          Capacity: ${s.capacity}<br>
-          Organization: ${s.organization}<br>
-          Distance: ${dist.toFixed(4)} units
-        `);
-    });
-
-    // Fit map bounds
-    const bounds = L.latLngBounds([
-      [latitude, longitude],
-      ...shelters.map(s => [s.lat, s.lng])
-    ]);
-    map.fitBounds(bounds, { padding: [50, 50] });
-    
-    console.log("Markers added successfully");
+  // Update marker popup and stored userStatus
+  shelterMarkers.forEach(sm => {
+    if (sm.data.name === selectedShelter) {
+      sm.data.userStatus = selectedStatus; // store new user status
+      sm.marker.setPopupContent(`
+        <b>${sm.data.name}</b><br>
+        ${sm.data.address}, ${sm.data.city}, ${sm.data.state} ${sm.data.zip}<br>
+        FEMA Status: ${sm.data.status}<br>
+        User Status: ${sm.data.userStatus}<br>
+        Capacity: ${sm.data.capacity}<br>
+        Organization: ${sm.data.organization}
+      `);
+    }
   });
 });
 
-// Dropdown toggle
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.dropdown-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const dropdown = btn.parentElement;
-      dropdown.classList.toggle('active');
-    });
+// Find nearest shelter button logic
+document.getElementById("findBtn").addEventListener("click", () => {
+  const btn = document.getElementById("findBtn");
+  btn.textContent = "Locating...";
+
+  if (!navigator.geolocation) {
+    alert("GPS not supported");
+    btn.textContent = "Find Nearest Shelter";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude, longitude } = pos.coords;
+
+    try {
+      // Remove old user marker
+      if (window.userMarker) {
+        map.removeLayer(window.userMarker);
+      }
+
+      // Add user marker
+      window.userMarker = L.marker([latitude, longitude], { icon: yellowIcon })
+        .addTo(map)
+        .bindPopup("You are here")
+        .openPopup();
+
+      if (allShelters.length > 0) {
+        // Find nearest with valid coords
+        const validShelters = allShelters.filter(s => Number.isFinite(s.lat) && Number.isFinite(s.lng));
+        const nearest = [...validShelters].sort((a, b) => // Sort by distance
+          findDistance(latitude, longitude, a.lat, a.lng) -
+          findDistance(latitude, longitude, b.lat, b.lng)
+        )[0];
+
+        // Find the existing marker object and change its icon to red
+        const nearestMarkerObj = shelterMarkers.find(sm => sm.data.name === nearest.name);
+        if (nearestMarkerObj) {
+          nearestMarkerObj.marker.setIcon(redIcon);
+          nearestMarkerObj.marker.openPopup();
+          map.fitBounds([
+            [latitude, longitude],
+            [nearest.lat, nearest.lng]
+          ], { padding: [50, 50] });
+        }
+      }
+
+    } catch (err) {
+      console.error("Error locating nearest shelter:", err);
+      alert("Something went wrong while locating shelters.");
+    }
+
+    btn.textContent = "Find Nearest Shelter";
+  }, () => {
+    alert("Unable to retrieve your location.");
+    btn.textContent = "Find Nearest Shelter";
+  });
+});
+
+// Dropdown toggle logic
+document.querySelectorAll('.dropdown-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const dropdown = btn.parentElement;
+    dropdown.classList.toggle('active');
   });
 });
