@@ -170,6 +170,7 @@ document.getElementById("findBtn").addEventListener("click", () => {
 
   navigator.geolocation.getCurrentPosition(pos => {
     const { latitude, longitude } = pos.coords;
+    localStorage.setItem('lastKnownLocation', JSON.stringify({ latitude, longitude }));
 
     try {
       // Remove old user marker
@@ -210,7 +211,25 @@ document.getElementById("findBtn").addEventListener("click", () => {
 
     btn.textContent = "Find Nearest Shelter";
   }, () => {
-    alert("Unable to retrieve your location.");
+    const stored = localStorage.getItem('lastKnownLocation');
+    if (stored) {
+      const coords = JSON.parse(stored);
+      const { latitude, longitude } = coords;
+      if (window.userMarker) map.removeLayer(window.userMarker);
+      window.userMarker = L.marker([latitude, longitude], { icon: yellowIcon }).addTo(map).bindPopup("You are here").openPopup();
+      if (allShelters.length > 0) {
+        const validShelters = allShelters.filter(s => Number.isFinite(s.lat) && Number.isFinite(s.lng));
+        const nearest = [...validShelters].sort((a, b) => findDistance(latitude, longitude, a.lat, a.lng) - findDistance(latitude, longitude, b.lat, b.lng))[0];
+        const nearestMarker = shelterMarkers.find(sm => sm.data.name === nearest.name);
+        if (nearestMarker) {
+          nearestMarker.marker.setIcon(redIcon);
+          nearestMarker.marker.openPopup();
+          map.fitBounds([[latitude, longitude], [nearest.lat, nearest.lng]], { padding: [50, 50] });
+        }
+      }
+    } else {
+      alert("Unable to retrieve your location.");
+    }
     btn.textContent = "Find Nearest Shelter";
   });
 });
