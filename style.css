@@ -13,10 +13,25 @@ body {
   max-width: 1000px;
 }
 
+.title-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 h1 {
   text-align: center;
-  color: #32CBFF;
-  margin-bottom: 10px;
+  color: #000000;
+  margin-bottom: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+  border-bottom: 2px solid #d62626;
+  padding-bottom: 20px;
 }
 
 h2 {
