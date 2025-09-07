@@ -1,5 +1,12 @@
 // Default map setup
 const map = L.map('map').setView([37, -100], 4);
+
+// Set maximum bounds
+map.setMaxBounds([
+  [15, -180],
+  [70, -50]
+]);
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
@@ -21,10 +28,10 @@ async function fetchFEMAAll() {
   // Update GeoJSON if online
   if (navigator.onLine) {
     try {
-      const DATA_URL = "http://localhost:5000/data";
-      const res = await fetch(DATA_URL);
+  const DATA_URL = "http://localhost:5000/data";
+  const res = await fetch(DATA_URL);
       if (res.ok) {
-        const data = await res.json();
+  const data = await res.json();
         localStorage.setItem('shelterData', JSON.stringify(data));
         console.log("Data updated from server");
       }
@@ -39,19 +46,19 @@ async function fetchFEMAAll() {
     const data = await response.json();
     
     console.log(`Loaded ${data.features.length} shelters from local file`);
-    
-    return data.features.map(f => {
-      const coords = f.geometry.coordinates;
-      const p = f.properties;
-      return {
-        name: p.shelter_name || "Unnamed Shelter",
-        address: p.address || "",
-        city: p.city || "",
-        state: p.state || "",
-        zip: p.zip || "",
+
+  return data.features.map(f => {
+    const coords = f.geometry.coordinates;
+    const p = f.properties;
+    return {
+      name: p.shelter_name || "Unnamed Shelter",
+      address: p.address || "",
+      city: p.city || "",
+      state: p.state || "",
+      zip: p.zip || "",
         status: p.shelter_status || "Unknown", // FEMA status
-        capacity: p.evacuation_capacity || "N/A",
-        organization: p.org_name || "N/A",
+      capacity: p.evacuation_capacity || "N/A",
+      organization: p.org_name || "N/A",
         lat: coords ? coords[1] : null,
         lng: coords ? coords[0] : null,
         userStatus: "N/A" // default user status
@@ -172,9 +179,9 @@ document.getElementById("findBtn").addEventListener("click", () => {
 
       // Add user marker
       window.userMarker = L.marker([latitude, longitude], { icon: yellowIcon })
-        .addTo(map)
-        .bindPopup("You are here")
-        .openPopup();
+      .addTo(map)
+      .bindPopup("You are here")
+      .openPopup();
 
       if (allShelters.length > 0) {
         // Find nearest with valid coords
@@ -209,9 +216,9 @@ document.getElementById("findBtn").addEventListener("click", () => {
 });
 
 // Dropdown toggle logic
-document.querySelectorAll('.dropdown-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const dropdown = btn.parentElement;
-    dropdown.classList.toggle('active');
+  document.querySelectorAll('.dropdown-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dropdown = btn.parentElement;
+      dropdown.classList.toggle('active');
   });
 });
