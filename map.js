@@ -109,7 +109,6 @@ document.getElementById("findBtn").addEventListener("click", async () => {
   });
 });
 
-
 // Dropdown toggle
 document.querySelectorAll('.dropdown-btn').forEach(btn => {
   btn.addEventListener('click', () => {
