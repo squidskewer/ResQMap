@@ -1,0 +1,145 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1727520,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.09186919999996,
+          48.61054840000003
+        ]
+      },
+      "properties": {
+        "objectid": 1727520,
+        "shelter_id": 367096,
+        "shelter_name": "American Legion",
+        "address": "1057 US 395",
+        "city": "N Kettle Falls",
+        "state": "WA",
+        "zip": "99141",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 13,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "ARC Partner",
+        "org_id": 126165,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727521,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.36917499999998,
+          37.98170300000004
+        ]
+      },
+      "properties": {
+        "objectid": 1727521,
+        "shelter_id": 367099,
+        "shelter_name": "Sonora Senior Center",
+        "address": "540 Greenley Rd",
+        "city": "Sonora",
+        "state": "CA",
+        "zip": "95370",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 8,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "Independent",
+        "org_id": 126166,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727522,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.51345375599999,
+          34.00272994000005
+        ]
+      },
+      "properties": {
+        "objectid": 1727522,
+        "shelter_id": 171713,
+        "shelter_name": "Jurupa Valley High School",
+        "address": "10551 Bellegrave Ave",
+        "city": "Jurupa Valley",
+        "state": "CA",
+        "zip": "91752",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": 536,
+        "post_impact_capacity": 268,
+        "total_population": 0,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "RIVERSIDE COUNTY CHAPTER",
+        "org_id": 121757,
+        "match_type": "A",
+        "subfacility_code": "EMEREVAC",
+        "ada_compliant": " ",
+        "pet_accommodations_code": " ",
+        "wheelchair_accessible": " ",
+        "latitude": 34.002729939999995,
+        "longitude": -117.51345376
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1727523,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.99487799999997,
+          43.08832300000006
+        ]
+      },
+      "properties": {
+        "objectid": 1727523,
+        "shelter_id": 367093,
+        "shelter_name": "Milwaukee Environmental Sciences School",
+        "address": "6600 W Melvina St",
+        "city": "Milwaukee",
+        "state": "WI",
+        "zip": "53216",
+        "shelter_status": "OPEN",
+        "evacuation_capacity": null,
+        "post_impact_capacity": null,
+        "total_population": 45,
+        "hours_open": null,
+        "hours_close": null,
+        "org_name": "ARC Partner",
+        "org_id": 126165,
+        "match_type": null,
+        "subfacility_code": "GENPOPSHEL",
+        "ada_compliant": null,
+        "pet_accommodations_code": null,
+        "wheelchair_accessible": null,
+        "latitude": null,
+        "longitude": null
+      }
+    }
+  ]
+}
